@@ -12,8 +12,25 @@
  */
 
 // -------- your solutions --------
+const caseTest = ( text= '' , lowerCase = true) => {
+if(typeof text !== 'string' ){
+  throw new TypeError ('Text is not a string');
+}
+if(typeof lowerCase !== 'boolean'){
+  throw new TypeError ( 'lowercas is not a boolean');
+}
 
-for (const solution of [secretSolution]) {
+
+  if(lowerCase){
+    text = text.toLowerCase();
+  } else {
+    text = text.toUpperCase();
+  }
+  return text ; 
+}
+
+
+for (const solution of [secretSolution , caseTest]) {
   describe(solution.name + ': sets a text to lower or upper case', () => {
     describe("the function's default parameters", () => {
       it('second parameter defaults to true', () => {
@@ -26,11 +43,14 @@ for (const solution of [secretSolution]) {
     // write the tests indicated by the comments
     describe('when set to lower case', () => {
       // when the text is an empty string
-      it(_, () => {
-        expect(solution(_, _)).toEqual(_);
+      it('empty string retured when empty string passed', () => {
+        expect(solution('', true)).toEqual('');
       });
       // when the text is all upper case
       // when the text is all lower case
+      it('abcd --> abcd', () => {
+        expect(solution('abcd', true)).toEqual('abcd')
+      });
       // when the text is mixed upper and lower case
       // when the text contains punctuation
       // when the text contains numbers
@@ -39,10 +59,20 @@ for (const solution of [secretSolution]) {
       // when the text is an empty string
       // when the text is all upper case
       // when the text is all lower case
+      it('abcd --> ABCD', () => {
+        expect(solution('abcd', false)).toEqual('ABCD')
+      });
       // when the text is mixed upper and lower case
       // when the text contains punctuation
       // when the text contains numbers
     });
+    it('should throw typerror when text is not a string --> number', () =>{
+      expect(()=> solution(10,false)).toThrow(TypeError)
+    });
+    it('should throw typerror when lowercase is not a boolean--> number', () =>{
+      expect(()=> solution('abc',10)).toThrow(TypeError)
+    });
+    
   });
 }
 

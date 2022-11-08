@@ -13,12 +13,25 @@
  */
 
 // -------- your solutions --------
+const comparingParm = ( val1 , val2) => {
+  let description = '';
+  if (val1 === val2){
+    description = 'strictly equal';
+  }else if(typeof val1 === typeof val2){
+    description = 'same type';
+  }else {
+    description = 'totally different';
+  }
+  return description ; 
+}
 
-for (const solution of [secretSolution]) {
+
+
+for (const solution of [secretSolution , comparingParm]) {
   describe(solution.name + ': determines how similar two values are', () => {
     describe('when values are strictly equal', () => {
       it('two identical strings -> "strictly equal"', () => {
-        expect(solution('hello', 'hello')).toEqual(_);
+        expect(solution('hello', 'hello')).toEqual('strictly equal');
       });
       it('two identical numbers -> "strictly equal"', () => {
         // 1, 1.0
@@ -27,19 +40,22 @@ for (const solution of [secretSolution]) {
     });
     describe('when values have the same type', () => {
       it('two different strings -> "same type"', () => {
-        expect(_).toEqual('same type');
+        expect(solution('a', '1')).toEqual('same type');
       });
       it('two different numbers -> "same type"', () => {
-        expect(_).toEqual(_);
+        expect(solution(1 , 2)).toEqual('same type');
       });
-      it('two different booleans -> "same type"', () => {});
+      it('two different booleans -> "same type"', () => {
+        expect()
+      });
     });
     describe('when values are nothing alike', () => {
       it('values that are obviously different', () => {
-        _(_(null, 4))._(_);
+        expect(solution(null, 4)).toEqual('totally different');
       });
       it('values that can be confusing', () => {
         // "4" and 4
+        expect(solution('4',4)).toEqual('totally different');
       });
     });
   });
