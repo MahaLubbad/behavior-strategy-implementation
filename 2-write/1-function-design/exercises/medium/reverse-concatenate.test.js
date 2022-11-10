@@ -11,10 +11,20 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
-  describe(solution.name + ': _', () => {
-    describe('_', () => {
-      it('_', () => {});
+const stringsReversed = (arrayOfStrings) => {
+  const result = arrayOfStrings.reverse().join('');
+  return result ;
+}
+
+for (const solution of [secretSolution, stringsReversed]) {
+  describe(solution.name + ': reverse concatenate string from array', () => {
+    describe('reverse array of strings an combine them', () => {
+      it('["world","hello"] --> helloworld', () => {
+        expect(solution(["world","hello"])).toEqual('helloworld');
+      });
+      it('["3","2","1"] --> "123"', () => {
+        expect(solution(['3','2','1'])).toEqual('123');
+      });
     });
   });
 }

@@ -14,8 +14,31 @@
  */
 
 // -------- your solutions --------
+const fizzbuzzCheck = (num = 0) => {
+  if(num < 0){
+    throw new RangeError('number must be bigger than 0');
+  }
+if(typeof num !== 'number'){
+  throw new TypeError ('num must be a number');
+}
 
-for (const solution of [secretSolution]) {
+  let result ='';
+  if(num % 3 === 0 && num % 5 === 0){
+    result = 'fizzbuzz';
+  }
+  else if (num % 3 === 0 && num % 5 !== 0){
+    result = 'fizz';
+  }else if ( num % 3 !== 0 && num % 5 === 0){
+    result = 'buzz';
+  }else{
+    result = num ;
+  }
+  return result;
+}
+
+
+
+for (const solution of [secretSolution , fizzbuzzCheck]) {
   describe(solution.name + ': fizbuzzish', () => {
     describe('default parameter is 0', () => {
       it('returns "fizzbuzz" when no argument is passed', () =>
@@ -30,6 +53,9 @@ for (const solution of [secretSolution]) {
         expect(solution(2)).toEqual(2);
       });
       // write more tests in this category
+      it('7 -> 7', () => {
+        expect(solution(7)).toEqual(7);
+      });
     });
 
     describe('only divisible by only 3', () => {
@@ -41,6 +67,9 @@ for (const solution of [secretSolution]) {
         expect(solution(6)).toEqual(expectedValue);
       });
       // write more tests in this category
+      it('12 -> "fizz"', () => {
+        expect(solution(12)).toEqual(expectedValue);
+      });
     });
 
     describe('only divisible by only 5', () => {
@@ -63,6 +92,12 @@ for (const solution of [secretSolution]) {
         expect(solution(30)).toEqual(expectedValue);
       });
       // write more tests in this category
+    });
+    it('should throw error -1 passed', () => {
+      expect(() => solution(-1)).toThrow(RangeError);
+    });
+    it('should throw typeError when not number passed', () => {
+      expect(() => solution('hello')).toThrow(TypeError);
     });
   });
 }

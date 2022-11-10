@@ -9,12 +9,23 @@
  * @returns {number[]} an array with only even numbers
  */
 
-// -------- your solutions --------
+// -------- your solutions -----
 
-for (const solution of [secretSolution]) {
-  describe(solution.name + ': _', () => {
-    describe('_', () => {
-      it('_', () => {});
+const oddNumberRemoval =(arrayOfNumbers) => {
+  const result = arrayOfNumbers.filter(num => num % 2 ===0);
+return result;
+}
+
+
+for (const solution of [secretSolution , oddNumberRemoval]) {
+  describe(solution.name + ': Remove odd numbers from an array', () => {
+    describe('function remove any odd numbers', () => {
+      it('[2, 3, 4] --> [2, 4]', () => {
+        expect(solution([2,3,4])).toEqual([2,4]);
+      });
+      it('[1,2,3,4,5] --> [2,4]', () => {
+        expect(solution([1,2,3,4,5])).toEqual([2,4]);
+      })
     });
   });
 }
